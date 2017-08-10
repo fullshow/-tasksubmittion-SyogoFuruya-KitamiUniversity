@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>new Todo List Form</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link href="../css/inputform.css" rel="stylesheet" />
+<link href="../css/nav.css" rel="stylesheet" />
+<link href="../css/main.css" rel="stylesheet" />
+</head>
+<body>
+
+	<!--  nav設置  -->
+	<div th:replace="layout :: nav"></div>
+
+	<!-- 入力  requiredで警告-->
+	<h1>Todoリスト作成</h1>
+	<form action="#" th:action="@{/listnew}" th:object="${MongoTodoData}"
+		method="post" class="form-wrapper" >
+			<input id="search" type="text" th:field="*{title}" placeholder="List It..." required="required"/>
+			<input id="submit" type="submit" name="key" value="作成"/>
+			<input id="submit" type="reset" value="クリア" />
+	</form>
+
+	<!-- 出力  （kajou == "箇条書き"）-->
+	<h1>Todoリスト一覧</h1>
+	<ul th:each="list : ${datas}" class="kajou">
+		<li><a th:href="@{addtodo/(id=${list.title})}"
+			th:text="${list.title}"></a></li>
+	</ul>
+
+</body>
+</html>

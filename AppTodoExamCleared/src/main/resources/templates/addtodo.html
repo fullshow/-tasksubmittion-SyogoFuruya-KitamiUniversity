@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>todo</title>
+<link href="../css/folding.css" rel="stylesheet" />
+<link href="../css/table.css" rel="stylesheet" />
+<link href="../css/nav.css" rel="stylesheet" />
+<link href="../css/main.css" rel="stylesheet" />
+<link href="../css/todoinput.css" rel="stylesheet" />
+
+</head>
+<body>
+	<script type="text/javascript" src="./timer.js"></script>
+
+	<div class="container">
+		<!--  nav設置  -->
+		<div th:replace="layout :: nav"></div>
+
+		<!-- 折り畳みUI -->
+		<div class="ui-folding"
+			onclick="obj=document.getElementById('open').style; obj.display=(obj.display=='none')?'block':'none';">
+			<a style="cursor: pointer;"><label> ▼ TODO </label> </a>
+		</div>
+
+		<!-- 折り畳まれ部分 -->
+		<div id="open" style="display: none; clear: both;">
+			<form action="#" th:action="@{/addtodo}"
+				th:object="${MongoTodoListData}" method="post">
+
+				<p class="comm">
+					TODO入力: <input class="del" type="reset" value="クリア" />
+				</p>
+				<textarea class="kanso" name="kanso" th:field="*{memo}" cols="40"
+					rows="4" maxlength="50" placeholder="Todoを入力" required="required"></textarea>
+				<p class="comm">
+					MEMO入力: <input class="del" type="reset" value="クリア" />
+				</p>
+				<input class="urlhome" type="text" placeholder="MEMOを入力"
+					th:field="*{remark}" />
+				<p></p>
+				<button class="putIt" type="submit" value="save">作成</button>
+
+			</form>
+		</div>
+
+		<br />
+		<!-- 表 -->
+		<div align="center">
+			<table>
+				<tr>
+					<th>TODO /</th>
+					<th>メモ /</th>
+					<th>通知 /</th>
+					<th>作業クリア/</th>
+				</tr>
+				<th:block th:if="${todoAll.isEmpty()}">
+					<td th:text="Todoは入っておりません"></td>
+					<td th:text="なし"></td>
+					<td th:text="なし"></td>
+					<td th:text="なし"></td>
+				</th:block>
+
+				<th:block th:unless="${todoAll.isEmpty()}">
+					<tr th:each="list,iterStat : ${todoAll}"
+						th:class="${iterStat.current}? 'current'">
+						<!-- TODO -->
+						<td><label th:text="${list.memo}"></label></td>
+
+						<!-- MEMO -->
+						<td><label th:text="${list.remark}"></label></td>
+
+						<!-- 通知 -->
+						<td>
+
+							<form name="form_countdown">
+								<input name="counter" type="text" value="60" size="10" />秒<input
+									name="start" type="button" value="開始" onClick="countstart()" />
+							</form> <script th:inline="javascript">
+							
+							//接続
+							function countstart() {
+								setTimeout( "show()" , eval("document.form_countdown.counter.value * 1000") );
+							}
+							
+
+						// Notification　通知本体
+						function show() {
+							// Notificationを取得
+							var Notification = window.Notification
+							|| window.mozNotification || window.webkitNotification;
+							// Notificationの権限チェック	
+							Notification.requestPermission(function(permission) {
+							});
+							//通知したいTodo格納
+							var str = [[${list.memo}]];
+							var instance = new Notification("TODO通知", 
+							{				
+								body : str , 
+							});
+							<!-- mill second -->
+							instance.config({ autoClose : 5000 }); 
+				
+							instance.onclick = function() {
+							};
+							instance.onerror = function() {};
+							instance.onshow = function() {};
+							instance.onclose = function() {};
+						}
+						</script>
+
+						</td>
+						<td>
+							<!-- デリートボタン -->
+							<form action="#" th:action="@{/addtodo}" th:method="delete">
+								<input type="hidden" name="action" th:value="${iterStat.index}" />
+								<button type="submit" id="submitButton">クリア</button>
+							</form>
+						</td>
+					</tr>
+				</th:block>
+			</table>
+		</div>
+
+		<br />
+
+	</div>
+	<hr />
+	<a href="/listnew">トップページに戻る</a>
+
+</body>
+</html>

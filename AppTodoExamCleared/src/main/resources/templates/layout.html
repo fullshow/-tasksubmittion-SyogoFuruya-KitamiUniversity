@@ -1,0 +1,39 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title th:text="${title}">title</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="responsive-nav.js"></script>
+<link href="/vendor/bootstrap-3.3.5/css/bootstrap.min.css"
+	th:href="@{/vendor/bootstrap-3.3.5/css/bootstrap.min.css}"
+	rel="stylesheet" />
+</head>
+
+<body>
+	<div class="container">
+
+		<!-- nav bar -->
+		<div th:fragment="nav" class="row">
+			<div class="col-md-12">
+				<ul class="nav nav-pills">
+					<li role="presentation"><a href="/listnew" th:href="@{/listnew}">toppage</a></li>
+					<li role="presentation"><a href="/search" th:href="@{/search}">search</a></li>
+					<!-- 確認用のメニュー
+					<li role="presentation"><a href="/check/alldelete" th:href="@{/check/alldelete}">alldelete</a></li>
+					　-->
+				</ul>
+			</div>
+		</div>
+		
+	</div>
+	
+	<div th:fragment="script">
+		<script src="/vendor/jquery/jquery-1.11.3.js"
+			th:src="@{/vendor/jquery/jquery-1.11.3.js}"></script>
+		<script src="/vendor/bootstrap-3.3.5/js/bootstrap.js"
+			th:src="@{/vendor/bootstrap-3.3.5/js/bootstrap.js}"></script>
+	</div>
+</body>
+</html>

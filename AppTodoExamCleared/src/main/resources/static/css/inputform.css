@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+input#search {
+	background-repeat: no-repeat;
+	background-position: 6px;
+	border: 1px solid #DADADA;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-left: 15px;
+	width: 310px;
+	height: 33px;
+	font:"Times New Roman", Times, serif;  
+	font-size: 20px;
+	box-shadow: 0 0 10px;
+	-webkit-box-shadow: 0 0 10px;
+}
+
+input#submit {
+	background-color: #FF9980;	/* pink */
+	border-radius: 5px;
+	border: none;
+	padding: 10px 25px;
+	color: #FFF;
+}
+
+input#submit:hover {
+	background-color: #FFC0CB;
+}
+

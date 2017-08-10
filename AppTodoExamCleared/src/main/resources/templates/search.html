@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>top page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="../css/table.css" rel="stylesheet" />
+<link href="../css/nav.css" rel="stylesheet" />
+<link href="../css/main.css" rel="stylesheet" />
+<link href="../css/inputform.css" rel="stylesheet" />
+</head>
+<body>
+
+	<!--  nav設置  -->
+	<div th:replace="layout :: nav"></div>
+
+	<h1>TodoList Search</h1>
+	<form method="post" action="/search" class="form-wrapper">
+		<input id="search" type="text" name="key" placeholder="Search It..."
+			required="required" /> <input id="submit" type="submit" value="検索" />
+		<input id="submit" type="reset" value="クリア" />
+	</form>
+
+	<br />
+	<div align="center">
+		<table>
+			<tr>
+				<th>TODO /</th>
+				<th>メモ /</th>
+			</tr>
+			<th:block th:if="${dat.isEmpty()}">
+				<td th:text="Todoは入っておりません"></td>
+				<td th:text="なし"></td>
+			</th:block>
+			<tr th:each="data : ${dat}">
+				<td><a href="https://www.google.co.jp/" target="_blank"
+					th:text="${data.memo}"></a></td>
+				<td><label th:text="${data.remark}"></label></td>
+			</tr>
+		</table>
+	</div>
+	<br />
+	<hr />
+	<a href="/listnew">トップページに戻る</a>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+@charset "UTF-8";
+
+.comm{
+	text-indent: 50px;
+	font-size:18px;
+}
+
+button.putIt {
+	width: 300px;
+	background-color: #FF9980;	/* pink */
+	border-radius: 5px;
+	border: none;
+	padding: 10px 25px;
+	color: #FFF;
+}
+
+button.putIt:hover {
+	background-color: #FFC0CB;
+}
+
+input.del{
+	width: 50px;
+	height: 20px;
+	border-radius: 5px;
+	border: none;
+	background-color: #0099FF;
+	color: #FFF;
+}
+
+input.del:hover {
+	background-color: #00CCFF;
+}
+
+textarea {
+	width: 270px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-left: 15px;
+	padding-right: 15px;
+	background-color: white;
+	outline: none;
+	border: 2px solid #ccc;
+	font-family:"Times New Roman", Times, serif;  
+	font-size: 20px;
+}
+
+textarea:focus {
+	box-shadow: 0 0 7px #ccc;
+}
+
+input.urlhome {
+	width: 300px;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-left: 15px;
+	font:"Times New Roman", Times, serif;  
+	font-size: 20px;
+	background-color: white;
+	background-position: 10px 10px;
+	background-repeat: no-repeat;
+}
+
